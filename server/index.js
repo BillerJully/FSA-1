@@ -1,11 +1,13 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import router from './router.js'
+import cors from 'cors'
 
 const SERVER_PORT = 5000
 const DB_URI = 'mongodb://localhost:27017/mydatabase' // Укажите имя вашей базы данных
 
 const app = express()
+app.use(cors())
 app.use(express.json())
 app.use('/api', router)
 
