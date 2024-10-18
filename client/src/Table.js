@@ -38,6 +38,7 @@ const TransactionTable = () => {
                 <thead>
                     <tr>
                         <th>Date</th>
+                        <th>Added date</th>
                         <th>Description</th>
                         <th>Amount</th>
                         <th>Type</th>
@@ -49,6 +50,11 @@ const TransactionTable = () => {
                             <td>
                                 {new Date(
                                     transaction.transactionDate
+                                ).toLocaleDateString()}
+                            </td>
+                            <td>
+                                {new Date(
+                                    transaction.createdAt
                                 ).toLocaleDateString()}
                             </td>
                             <td>{transaction.description}</td>

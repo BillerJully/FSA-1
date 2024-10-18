@@ -1,0 +1,8 @@
+.transaction-form {
+    width: 400px;
+    border: 1px solid grey;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

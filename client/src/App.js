@@ -6,7 +6,9 @@ function App() {
     return (
         <div className="App">
             <TransactionForm />
-            <Table />
+            <div className="transaction-form">
+                <Table />
+            </div>
         </div>
     )
 }

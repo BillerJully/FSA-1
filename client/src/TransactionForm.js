@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import axios from 'axios'
+import './TransactionForm.css'
+import axios, { formToJSON } from 'axios'
 
 const TransactionForm = () => {
     const [transactionDate, setTransactionDate] = useState('')
@@ -37,56 +38,58 @@ const TransactionForm = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h2>Transaction Form</h2>
+        <div className="transaction-form">
+            <form onSubmit={handleSubmit}>
+                <h2>Transaction Form</h2>
 
-            {error && <div style={{ color: 'red' }}>{error}</div>}
-            {success && <div style={{ color: 'green' }}>{success}</div>}
+                {error && <div style={{ color: 'red' }}>{error}</div>}
+                {success && <div style={{ color: 'green' }}>{success}</div>}
 
-            <div>
-                <label>Date:</label>
-                <input
-                    type="date"
-                    value={transactionDate}
-                    onChange={(e) => setTransactionDate(e.target.value)}
-                    required
-                />
-            </div>
+                <div>
+                    <label>Date:</label>
+                    <input
+                        type="date"
+                        value={transactionDate}
+                        onChange={(e) => setTransactionDate(e.target.value)}
+                        required
+                    />
+                </div>
 
-            <div>
-                <label>Description:</label>
-                <input
-                    type="text"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    required
-                />
-            </div>
+                <div>
+                    <label>Description:</label>
+                    <input
+                        type="text"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        required
+                    />
+                </div>
 
-            <div>
-                <label>Amount:</label>
-                <input
-                    type="number"
-                    value={amount}
-                    onChange={(e) => setAmount(e.target.value)}
-                    required
-                    step="0.01"
-                />
-            </div>
+                <div>
+                    <label>Amount:</label>
+                    <input
+                        type="number"
+                        value={amount}
+                        onChange={(e) => setAmount(e.target.value)}
+                        required
+                        step="0.01"
+                    />
+                </div>
 
-            <div>
-                <label>Type:</label>
-                <select
-                    value={transactionType}
-                    onChange={(e) => setTransactionType(e.target.value)}
-                >
-                    <option value="income">Income</option>
-                    <option value="expense">Expense</option>
-                </select>
-            </div>
+                <div>
+                    <label>Type:</label>
+                    <select
+                        value={transactionType}
+                        onChange={(e) => setTransactionType(e.target.value)}
+                    >
+                        <option value="income">Income</option>
+                        <option value="expense">Expense</option>
+                    </select>
+                </div>
 
-            <button type="submit">Submit</button>
-        </form>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
     )
 }
 
