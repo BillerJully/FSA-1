@@ -6,6 +6,15 @@ export default function TransactionTable() {
     const [transactions, setTransactions] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
+    const [currentPage, setCorrentPage] = useState(1)
+    const transactionsPerPage = 10
+    const indexOfLastTransaction = currentPage * transactionsPerPage
+    const indexOfFirstTransaction = indexOfLastTransaction - transactionsPerPage
+    const currentTransactions = transactions.slice(
+        indexOfFirstTransaction,
+        indexOfLastTransaction
+    )
+    const totalPages = Math.ceil(transactions.length / transactionsPerPage)
 
     const fetchTransactions = async () => {
         try {
@@ -17,6 +26,14 @@ export default function TransactionTable() {
             setError('Error fetching transactions: ' + error.message)
         } finally {
             setLoading(false)
+        }
+    }
+    const deleteTransaction = async (id) => {
+        try {
+            await axios.delete(`http://localhost:5000/api/transaction/${id}`)
+            fetchTransactions()
+        } catch (error) {
+            setError('Error deleting transaction: ' + error.message)
         }
     }
     useEffect(() => {
@@ -39,33 +56,71 @@ export default function TransactionTable() {
     return (
         <div className={styles.transactionTableHolder}>
             <table className={styles.transactionsTable}>
-                <thead>
+                <thead className={styles.tableHeader}>
                     <tr>
+                        <th>Id</th>
+                        <th>Added date</th>
                         <th>Date</th>
                         <th>Description</th>
                         <th>Amount</th>
                         <th>Type</th>
+
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {transactions.map((transaction) => (
-                        <tr key={transaction.id}>
-                            <td>
-                                {new Date(
-                                    transaction.transactionDate
-                                ).toLocaleDateString()}
-                            </td>
-                            <td>{transaction.description}</td>
-                            <td>{transaction.amount}</td>
-                            <td>
-                                {transaction.transactionType
-                                    ? 'Income'
-                                    : 'Expense'}
-                            </td>
-                        </tr>
-                    ))}
+                    {currentTransactions
+                        .sort(
+                            (a, b) =>
+                                new Date(b.createdAt) - new Date(a.createdAt)
+                        )
+                        .map((transaction, index) => (
+                            <tr key={transaction.id}>
+                                <td>{index + 1}</td>
+                                <td>
+                                    {new Date(
+                                        transaction.createdAt
+                                    ).toLocaleDateString()}
+                                </td>
+                                <td>
+                                    {new Date(
+                                        transaction.transactionDate
+                                    ).toLocaleDateString()}
+                                </td>
+                                <td>{transaction.description}</td>
+                                <td>{transaction.amount}</td>
+                                <td>
+                                    {transaction.transactionType
+                                        ? 'Income'
+                                        : 'Expense'}
+                                </td>
+                                <td>
+                                    <button
+                                        onClick={() =>
+                                            deleteTransaction(transaction._id)
+                                        }
+                                        className={styles.deleteButton}
+                                    >
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
                 </tbody>
             </table>
+            <div className={styles.pagination}>
+                {Array.from({ length: totalPages }, (_, index) => (
+                    <button
+                        key={index + 1}
+                        onClick={() => setCorrentPage(index + 1)}
+                        className={
+                            currentPage === index + 1 ? styles.active : ''
+                        }
+                    >
+                        {index + 1}
+                    </button>
+                ))}
+            </div>
         </div>
     )
 }

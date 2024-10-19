@@ -1,12 +1,75 @@
 .transactionTableHolder {
     margin-left: 50px;
     display: flex;
-    width: 500px;
+    width: 600px;
     flex-direction: column;
     align-items: center;
-    border-radius: 7px;
     box-shadow: 0 4px 14px #ccc;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
         sans-serif;
     letter-spacing: 1px;
+    border-collapse: collapse;
+    border-radius: 7px;
+    overflow: hidden;
+}
+
+.tableHeader {
+    background-color: rgb(48, 111, 230);
+    color: white;
+}
+
+.transactionTableHolder th,
+.transactionTableHolder td {
+    padding: 10px;
+    text-align: left;
+}
+
+.transactionTableHolder tr:nth-child(even) {
+    background-color: #f1f1f1;
+}
+
+.transactionsTable {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 7px;
+    overflow: hidden;
+}
+
+.deleteButton {
+    height: 24px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(48, 111, 230);
+    color: white;
+}
+
+.deleteButton:hover,
+.deleteButton:focus {
+    cursor: pointer;
+    background-color: rgb(62, 122, 233);
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    margin: 0 5px;
+    border: none;
+    border-radius: 25px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.pagination button.active {
+    background-color: rgb(48, 111, 230);
+    color: white;
+    cursor: default;
+}
+
+.pagination button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
 }
