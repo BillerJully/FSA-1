@@ -11,11 +11,15 @@ export default function TransactionInputForm() {
     const [transactionType, setTransactionType] = useState('')
     const [error, setError] = useState(null)
     const [success, setSuccess] = useState(null)
+    const [isMessageVisible, setIsMessageVisible] = useState(false)
+
+    const today = new Date().toISOString().split('T')[0]
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         setError(null)
         setSuccess(null)
+        setIsMessageVisible(true)
 
         const transactionData = {
             transactionDate,
@@ -27,6 +31,7 @@ export default function TransactionInputForm() {
         try {
             const response = await axios.post(SERVER_URL, transactionData)
             setSuccess('Transaction created successfully!')
+            setTransactionDate('')
             setDescription('')
             setAmount('')
             setTransactionType('income')
@@ -38,13 +43,12 @@ export default function TransactionInputForm() {
     return (
         <div className={styles.transactionFormHolder}>
             <form className={styles.inputForm} onSubmit={handleSubmit}>
-                {error && <div style={{ color: 'red' }}>{error}</div>}
-                {success && <div style={{ color: 'green' }}>{success}</div>}
                 <div className={styles.formInput}>
                     <label className={styles.inputLabel}>Date</label>
                     <input
                         className={styles.inputHolder}
                         type="date"
+                        max={today}
                         value={transactionDate}
                         onChange={(e) => setTransactionDate(e.target.value)}
                         required
@@ -85,6 +89,32 @@ export default function TransactionInputForm() {
                     Submit
                 </button>
             </form>
+
+            {isMessageVisible && error && (
+                <div style={{ color: 'red' }} className={styles.creationinfo}>
+                    {error}
+                    <button
+                        onClick={() => setIsMessageVisible(false)}
+                        style={{ marginLeft: '10px' }}
+                    >
+                        close
+                    </button>
+                </div>
+            )}
+            {isMessageVisible && success && (
+                <div style={{ color: 'green' }} className={styles.creationinfo}>
+                    {success}
+                    <button
+                        className={styles.creationButton}
+                        onClick={() => {
+                            setIsMessageVisible(false)
+                            console.log('pressed')
+                        }}
+                    >
+                        close
+                    </button>
+                </div>
+            )}
         </div>
     )
 }
