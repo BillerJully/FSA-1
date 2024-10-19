@@ -1,0 +1,20 @@
+.headerContainer {
+    background-color: whitesmoke;
+    height: 100px;
+    margin: 5px;
+    border: 1px solid black;
+    display: flex;
+    padding-inline: 20px;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+}
+
+.leftHeader {
+}
+.middleHeader {
+}
+.rightHeader {
+}
+.headerButton {
+}
