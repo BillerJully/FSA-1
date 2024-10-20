@@ -1,7 +1,8 @@
 .transactionTableHolder {
     margin-left: 50px;
     display: flex;
-    width: 600px;
+    width: 650px;
+    height: 520px;
     flex-direction: column;
     align-items: center;
     box-shadow: 0 4px 14px #ccc;

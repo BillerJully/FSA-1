@@ -94,6 +94,7 @@ export default function TransactionInputForm() {
                 <div style={{ color: 'red' }} className={styles.creationinfo}>
                     {error}
                     <button
+                        className={styles.creationButton}
                         onClick={() => setIsMessageVisible(false)}
                         style={{ marginLeft: '10px' }}
                     >
