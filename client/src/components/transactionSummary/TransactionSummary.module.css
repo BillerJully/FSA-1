@@ -1,0 +1,14 @@
+.summaryHolder {
+    display: flex;
+    height: fit-content;
+    padding-bottom: 14px;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 7px;
+    box-shadow: 0 4px 14px #ccc;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
+        sans-serif;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    margin-left: 50px;
+}

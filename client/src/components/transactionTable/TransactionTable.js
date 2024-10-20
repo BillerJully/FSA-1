@@ -21,6 +21,9 @@ export default function TransactionTable() {
             const response = await axios.get(
                 'http://localhost:5000/api/transaction'
             )
+            const sortedTransactions = response.data.sort(
+                (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+            )
             setTransactions(response.data)
         } catch (error) {
             setError('Error fetching transactions: ' + error.message)
@@ -38,7 +41,7 @@ export default function TransactionTable() {
     }
     useEffect(() => {
         fetchTransactions()
-
+        setCorrentPage(1)
         const intervalId = setInterval(() => {
             fetchTransactions()
         }, 5000)
@@ -54,29 +57,25 @@ export default function TransactionTable() {
         return <div style={{ color: 'red' }}>{error}</div>
     }
     return (
-        <div className={styles.transactionTableHolder}>
-            <table className={styles.transactionsTable}>
-                <thead className={styles.tableHeader}>
-                    <tr>
-                        <th>Id</th>
-                        <th>Added date</th>
-                        <th>Date</th>
-                        <th>Description</th>
-                        <th>Amount</th>
-                        <th>Type</th>
+        <div>
+            <div className={styles.transactionTableHolder}>
+                <table className={styles.transactionsTable}>
+                    <thead className={styles.tableHeader}>
+                        <tr>
+                            <th>Id</th>
+                            <th>Added date</th>
+                            <th>Transaction date</th>
+                            <th>Description</th>
+                            <th>Amount</th>
+                            <th>Type</th>
 
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {currentTransactions
-                        .sort(
-                            (a, b) =>
-                                new Date(b.createdAt) - new Date(a.createdAt)
-                        )
-                        .map((transaction, index) => (
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {currentTransactions.map((transaction, index) => (
                             <tr key={transaction.id}>
-                                <td>{index + 1}</td>
+                                <td>{indexOfFirstTransaction + index + 1}</td>
                                 <td>
                                     {new Date(
                                         transaction.createdAt
@@ -106,8 +105,9 @@ export default function TransactionTable() {
                                 </td>
                             </tr>
                         ))}
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
             <div className={styles.pagination}>
                 {Array.from({ length: totalPages }, (_, index) => (
                     <button
