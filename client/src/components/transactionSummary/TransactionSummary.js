@@ -14,7 +14,7 @@ export default function TransactionSummary() {
     const fetchTransactions = async () => {
         try {
             const response = await axios.get(
-                'http://localhost:5000/api/transaction'
+                'http://localhost:5000/api/transactions'
             )
             setTransactions(response.data)
         } catch (error) {
@@ -45,9 +45,13 @@ export default function TransactionSummary() {
         .filter((transaction) => transaction.transactionType)
         .reduce((acc, transaction) => acc + transaction.amount, 0)
 
+    const formattedTotalIncome = parseFloat(totalIncome.toFixed(2))
+
     const totalExpenses = transactions
         .filter((transaction) => !transaction.transactionType)
         .reduce((acc, transaction) => acc + transaction.amount, 0)
+
+    const formattedTotalExpenses = parseFloat(totalExpenses.toFixed(2))
 
     const transactionsData = {
         labels: [],
@@ -64,10 +68,10 @@ export default function TransactionSummary() {
         <div className={styles.summaryHolder}>
             <h2>Transaction Summary</h2>
             <p>
-                <strong>Summary income:</strong> {totalIncome} ₽
+                <strong>Summary income:</strong> {formattedTotalIncome} ₽
             </p>
             <p>
-                <strong>Summart expense:</strong> {totalExpenses} ₽
+                <strong>Summart expense:</strong> {formattedTotalExpenses} ₽
             </p>
             <Doughnut data={transactionsData} />
         </div>

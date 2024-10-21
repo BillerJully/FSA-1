@@ -3,10 +3,10 @@ import TransactionController from './transactionController.js'
 
 const router = new Router()
 
-router.post('/transaction', TransactionController.create)
-router.get('/transaction', TransactionController.getAll)
-router.get('/transaction/:id', TransactionController.getOne)
-router.put('/transaction', TransactionController.update)
-router.delete('/transaction/:id', TransactionController.delete)
+router.post('/transactions', TransactionController.create)
+router.get('/transactions', TransactionController.getAll)
+router.get('/transactions/:id', TransactionController.getOne)
+router.put('/transactions/:id', TransactionController.update)
+router.delete('/transactions/:id', TransactionController.delete)
 
 export default router

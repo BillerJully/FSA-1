@@ -1,7 +1,7 @@
 .transactionTableHolder {
     margin-left: 50px;
     display: flex;
-    width: 650px;
+    width: 730px;
     height: 520px;
     flex-direction: column;
     align-items: center;
@@ -36,6 +36,11 @@
     overflow: hidden;
 }
 
+.transactionsTable td:last-child {
+    display: flex;
+    gap: 5px;
+}
+
 .deleteButton {
     height: 24px;
     border: none;
@@ -49,6 +54,21 @@
     cursor: pointer;
     background-color: rgb(62, 122, 233);
 }
+
+.updateButton {
+    height: 24px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(0, 93, 25);
+    color: white;
+}
+
+.updateButton:hover,
+.updateButton:focus {
+    cursor: pointer;
+    background-color: rgb(9, 118, 62);
+}
+
 .pagination {
     display: flex;
     justify-content: center;

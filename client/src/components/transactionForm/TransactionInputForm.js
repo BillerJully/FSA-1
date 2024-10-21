@@ -2,7 +2,7 @@ import Reat, { useState } from 'react'
 import axios from 'axios'
 import styles from './TransactionForm.module.css'
 
-const SERVER_URL = 'http://localhost:5000/api/transaction'
+const SERVER_URL = 'http://localhost:5000/api/transactions'
 
 export default function TransactionInputForm() {
     const [transactionDate, setTransactionDate] = useState('')
