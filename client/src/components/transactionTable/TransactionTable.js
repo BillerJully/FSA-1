@@ -40,14 +40,14 @@ export default function TransactionTable() {
         }
     }
 
-    // const updateTransaction = async (id) => {
-    //     try {
-    //         await axios.delete(`http://localhost:5000/api/transaction/${id}`)
-    //         fetchTransactions()
-    //     } catch (error) {
-    //         setError('Error deleting transaction: ' + error.message)
-    //     }
-    // }
+    const updateTransaction = async (id) => {
+        try {
+            await axios.put(`http://localhost:5000/api/transaction/${id}`)
+            fetchTransactions()
+        } catch (error) {
+            setError('Error updating transaction: ' + error.message)
+        }
+    }
     useEffect(() => {
         fetchTransactions()
         setCorrentPage(1)
@@ -110,6 +110,17 @@ export default function TransactionTable() {
                                         className={styles.deleteButton}
                                     >
                                         Delete
+                                    </button>
+                                    <button
+                                        onClick={
+                                            () =>
+                                                deleteTransaction(
+                                                    transaction._id
+                                                ) //изменить на обновить
+                                        }
+                                        className={styles.updateButton}
+                                    >
+                                        Update
                                     </button>
                                 </td>
                             </tr>
