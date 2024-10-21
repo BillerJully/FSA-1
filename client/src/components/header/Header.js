@@ -5,14 +5,10 @@ export default function Header() {
     return (
         <div className={styles.headerContainer}>
             <div className={styles.leftHeader}>
-                <h1 className={styles.headerTitle}>Here is header</h1>
+                <h1 className={styles.headerTitle}>FinanceHelper</h1>
             </div>
             <div className={styles.middleHeader}>
-                <div className={styles.headerLinksHolder}>
-                    <a>Main page</a>
-                    <a>About project</a>
-                    <a>Contact us</a>
-                </div>
+                <div className={styles.headerLinksHolder}></div>
             </div>
             <div className={styles.rightHeader}>
                 <button className={styles.headerButton}>Sign in</button>

@@ -23,5 +23,4 @@ const TransactionSchema = new mongoose.Schema({
     },
 })
 
-// Создание модели на основе схемы
 export default mongoose.model('Transaction', TransactionSchema)

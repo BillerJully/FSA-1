@@ -45,20 +45,21 @@ class TransactionController {
     }
     async update(req, res) {
         try {
+            const { id } = req.params
             const transaction = req.body
-            if (!transaction._id) {
+            if (!id) {
                 res.status(400).json({ message: 'Id not found' })
             }
             const updatedTransaction = await Transaction.findByIdAndUpdate(
-                transaction._id,
+                id,
                 transaction,
-                { new: true }
+                { new: true, runValidators: true }
             )
             return res.json(updatedTransaction)
         } catch (error) {
             console.error('Ошибка при обновлении транзакции:', error)
             res.status(500).json({
-                error: 'Не удалось обновить транзакци',
+                error: 'Не удалось обновить транзакции',
             })
         }
     }

@@ -19,7 +19,7 @@ export default function TransactionTable() {
     const fetchTransactions = async () => {
         try {
             const response = await axios.get(
-                'http://localhost:5000/api/transaction'
+                'http://localhost:5000/api/transactions'
             )
             const sortedTransactions = response.data.sort(
                 (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
@@ -33,12 +33,21 @@ export default function TransactionTable() {
     }
     const deleteTransaction = async (id) => {
         try {
-            await axios.delete(`http://localhost:5000/api/transaction/${id}`)
+            await axios.delete(`http://localhost:5000/api/transactions/${id}`)
             fetchTransactions()
         } catch (error) {
             setError('Error deleting transaction: ' + error.message)
         }
     }
+
+    // const updateTransaction = async (id) => {
+    //     try {
+    //         await axios.delete(`http://localhost:5000/api/transaction/${id}`)
+    //         fetchTransactions()
+    //     } catch (error) {
+    //         setError('Error deleting transaction: ' + error.message)
+    //     }
+    // }
     useEffect(() => {
         fetchTransactions()
         setCorrentPage(1)
