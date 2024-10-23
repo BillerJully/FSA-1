@@ -16,6 +16,10 @@
     margin-left: 50px;
 }
 
+.chartContainer {
+    width: 260px;
+    height: 260px;
+}
 .summaryDiagram {
     height: 30px;
 }

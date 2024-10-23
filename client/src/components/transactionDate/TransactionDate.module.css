@@ -1,9 +1,10 @@
 .transactionDateContainer {
     height: 200px;
-    width: 260px;
+    /* width: 260px; */
 
     display: flex;
     align-items: center;
+    flex-direction: column;
     border-radius: 14px;
     box-shadow: 0 4px 14px #ccc;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
