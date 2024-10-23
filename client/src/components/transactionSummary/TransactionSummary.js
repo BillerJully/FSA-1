@@ -66,13 +66,17 @@ export default function TransactionSummary() {
 
     return (
         <div className={styles.summaryHolder}>
-            <h2>Transaction Summary</h2>
-            <p>
-                <strong>Summary income:</strong> {formattedTotalIncome} ₽
-            </p>
-            <p>
-                <strong>Summart expense:</strong> {formattedTotalExpenses} ₽
-            </p>
+            <div className={styles.summaryText}>
+                {' '}
+                <h2>Transaction Summary</h2>
+                <p>
+                    <strong>Summary income:</strong> {formattedTotalIncome} ₽
+                </p>
+                <p>
+                    <strong>Summart expense:</strong> {formattedTotalExpenses} ₽
+                </p>
+            </div>
+
             <Doughnut data={transactionsData} />
         </div>
     )

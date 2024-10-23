@@ -1,0 +1,10 @@
+.mainPageContainer {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.rightMainPage {
+    gap: 20px;
+    display: flex;
+}

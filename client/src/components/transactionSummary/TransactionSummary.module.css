@@ -1,8 +1,11 @@
 .summaryHolder {
     display: flex;
-    height: fit-content;
+    height: 280px;
     padding-bottom: 14px;
-    flex-direction: column;
+    width: fit-content;
+    padding: 20px;
+    box-sizing: border-box;
+
     align-items: center;
     border-radius: 7px;
     box-shadow: 0 4px 14px #ccc;
@@ -11,4 +14,13 @@
     letter-spacing: 1px;
     margin-bottom: 20px;
     margin-left: 50px;
+}
+
+.summaryDiagram {
+    height: 30px;
+}
+.summaryText {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
 }
