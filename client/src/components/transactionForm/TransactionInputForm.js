@@ -27,14 +27,15 @@ export default function TransactionInputForm() {
             amount: parseFloat(amount),
             transactionType: transactionType === 'income',
         }
-
+        console.log(transactionData.transactionType)
         try {
             const response = await axios.post(SERVER_URL, transactionData)
+
             setSuccess('Transaction created successfully!')
             setTransactionDate('')
             setDescription('')
             setAmount('')
-            setTransactionType('income')
+            setTransactionType('')
         } catch (error) {
             setError('Error creating transaction: ' + error.message)
         }

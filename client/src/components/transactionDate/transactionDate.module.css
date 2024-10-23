@@ -1,0 +1,10 @@
+.transactionDateContainer {
+    height: 200px;
+    width: 260px;
+    background-color: blue;
+    color: white;
+    display: flex;
+    align-items: center;
+    border-radius: 14px;
+    justify-content: center;
+}

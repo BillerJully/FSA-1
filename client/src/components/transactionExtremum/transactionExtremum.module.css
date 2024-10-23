@@ -1,0 +1,10 @@
+.TransactionExtremumContainer {
+    width: 200px;
+    height: 150px;
+    background-color: blue;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 14px;
+}

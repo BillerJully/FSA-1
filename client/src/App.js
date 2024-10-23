@@ -1,15 +1,28 @@
+import React from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+
 import styles from './App.module.css'
+
 import Header from './components/header/Header.js'
-import TransactionInputForm from './components/transactionForm/TransactionInputForm.js'
-import TransactionTable from './components/transactionTable/TransactionTable.js'
-import TransactionSummary from './components/transactionSummary/TransactionSummary.js'
-import TransactionDataChart from './components/transactionDataChart/TransactionDataChart.js'
 import Footer from './components/footer/Footer.js'
+
+import MainPage from './pages/MainPage.js'
+import StatisticsPage from './pages/StatisticsPage.js'
+import GeneralTable from './pages/GeneralTable.js'
+import TransactionsDatesPage from './pages/TransactionsDatesPage.js'
 
 function App() {
     return (
-        <div className={styles.App}>
-            <Header />
+        <Router>
+            <div className={styles.App}>
+                <Header />
+                <Routes>
+                    <Route path="" element={<MainPage />} />
+                    <Route path="/transactions" element={<GeneralTable />} />
+                    <Route path="/statistics" element={<StatisticsPage />} />
+                    <Route path="/dates" element={<TransactionsDatesPage />} />
+                </Routes>
+                {/* <Header />
 
             <div className={styles.data}>
                 <TransactionInputForm />
@@ -17,8 +30,13 @@ function App() {
                 <TransactionSummary />
             </div>
             <TransactionDataChart />
-            <Footer />
-        </div>
+            <TransactionDate />
+            <TransactionReport />
+            <TransactionExtremum />
+            <TransactionGeneralizedData />
+            <Footer /> */}
+            </div>
+        </Router>
     )
 }
 
