@@ -8,7 +8,7 @@ export default function TransactionInputForm() {
     const [transactionDate, setTransactionDate] = useState('')
     const [description, setDescription] = useState('')
     const [amount, setAmount] = useState('')
-    const [transactionType, setTransactionType] = useState('')
+    const [transactionType, setTransactionType] = useState('income')
     const [error, setError] = useState(null)
     const [success, setSuccess] = useState(null)
     const [isMessageVisible, setIsMessageVisible] = useState(false)
