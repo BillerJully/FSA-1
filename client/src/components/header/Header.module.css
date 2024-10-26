@@ -42,3 +42,24 @@
 .headerButton:focus {
     background-color: rgb(81, 132, 227);
 }
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #007bff; /* Цвет фона кнопки */
+    color: white; /* Цвет текста */
+    text-decoration: none; /* Убираем подчеркивание */
+    border-radius: 5px; /* Закругленные углы */
+    transition: background-color 0.3s; /* Плавный переход цвета */
+}
+
+.button:hover {
+    background-color: #0056b3; /* Цвет фона при наведении */
+}
+
+.button.active {
+    background-color: #0056b3; /* Цвет фона для активной кнопки */
+    pointer-events: none; /* Отключаем взаимодействие с кнопкой */
+    opacity: 0.6; /* Делаем кнопку полупрозрачной */
+}

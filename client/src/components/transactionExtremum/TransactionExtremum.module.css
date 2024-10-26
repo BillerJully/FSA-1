@@ -1,9 +1,11 @@
-.dataChartContainer {
-    width: 1200px;
-    height: 600px;
-
+.TransactionExtremumContainer {
+    width: 230px;
+    height: 130px;
+    margin-left: 5px;
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
     border-radius: 14px;
     box-shadow: 0 4px 14px #ccc;

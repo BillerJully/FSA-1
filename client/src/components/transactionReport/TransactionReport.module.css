@@ -1,6 +1,6 @@
-.dataChartContainer {
-    width: 1200px;
-    height: 600px;
+.transactionReportContainer {
+    width: 300px;
+    height: 300px;
 
     display: flex;
     justify-content: center;

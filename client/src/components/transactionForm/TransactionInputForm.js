@@ -8,7 +8,7 @@ export default function TransactionInputForm() {
     const [transactionDate, setTransactionDate] = useState('')
     const [description, setDescription] = useState('')
     const [amount, setAmount] = useState('')
-    const [transactionType, setTransactionType] = useState('')
+    const [transactionType, setTransactionType] = useState('income')
     const [error, setError] = useState(null)
     const [success, setSuccess] = useState(null)
     const [isMessageVisible, setIsMessageVisible] = useState(false)
@@ -27,14 +27,14 @@ export default function TransactionInputForm() {
             amount: parseFloat(amount),
             transactionType: transactionType === 'income',
         }
-
         try {
             const response = await axios.post(SERVER_URL, transactionData)
+
             setSuccess('Transaction created successfully!')
             setTransactionDate('')
             setDescription('')
             setAmount('')
-            setTransactionType('income')
+            setTransactionType('')
         } catch (error) {
             setError('Error creating transaction: ' + error.message)
         }
@@ -79,7 +79,9 @@ export default function TransactionInputForm() {
                     <select
                         className={styles.inputHolder}
                         value={transactionType}
-                        onChange={(e) => setTransactionType(e.target.value)}
+                        onChange={(e) => {
+                            setTransactionType(e.target.value)
+                        }}
                     >
                         <option value="income">Income</option>
                         <option value="expense">Expense</option>
@@ -109,7 +111,6 @@ export default function TransactionInputForm() {
                         className={styles.creationButton}
                         onClick={() => {
                             setIsMessageVisible(false)
-                            console.log('pressed')
                         }}
                     >
                         close

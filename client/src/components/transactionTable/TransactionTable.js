@@ -7,7 +7,7 @@ export default function TransactionTable() {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const [currentPage, setCorrentPage] = useState(1)
-    const transactionsPerPage = 10
+    const transactionsPerPage = 15
     const indexOfLastTransaction = currentPage * transactionsPerPage
     const indexOfFirstTransaction = indexOfLastTransaction - transactionsPerPage
     const currentTransactions = transactions.slice(
