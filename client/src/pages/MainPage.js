@@ -5,12 +5,16 @@ import TransactionInputForm from '../components/transactionForm/TransactionInput
 import TransactionSummary from '../components/transactionSummary/TransactionSummary.js'
 import TransactionGeneralizedData from '../components/transactionGeneralizedData/TransactionGeneralizedData.js'
 import TransactionExtremum from '../components/transactionExtremum/TransactionExtremum.js'
+import {
+    calculateTotalExpenses,
+    calculateTotalIncomes,
+    getDateOneWeekAgo,
+    getDateOneMonthAgo,
+    getDateOneYearAgo,
+} from '../utils/calculateTransactions.js'
 
 export default function MainPage() {
     const [transactions, setTransactions] = useState([])
-    const [weeklyTransactions, setWeeklyTransactions] = useState([])
-    const [monthlyTransactions, setMonthlyTransactions] = useState([])
-    const [yearlyTransactions, setYearlyTransactions] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
@@ -26,30 +30,10 @@ export default function MainPage() {
             setLoading(false)
         }
     }
-    const fetchTransactionsByPeriod = async (period) => {
-        try {
-            const response = await axios.get(
-                `http://localhost:5000/api/transactions?period=${period}`
-            )
-            return response.data
-        } catch (error) {
-            setError(`Error fetching ${period} transactions: ` + error.message)
-            return []
-        }
-    }
 
     useEffect(() => {
         const fetchData = async () => {
             await fetchTransactions()
-
-            const weeklyData = await fetchTransactionsByPeriod('week')
-            setWeeklyTransactions(weeklyData)
-
-            const monthlyData = await fetchTransactionsByPeriod('month')
-            setMonthlyTransactions(monthlyData)
-
-            const yearlyData = await fetchTransactionsByPeriod('year')
-            setYearlyTransactions(yearlyData)
         }
 
         fetchData()
@@ -92,6 +76,45 @@ export default function MainPage() {
                 transaction.amount > max.amount ? transaction : max,
             { amount: 0 }
         )
+
+    const totalWeekExpenses = calculateTotalExpenses(
+        transactions,
+        getDateOneWeekAgo()
+    )
+    const formattedTotalWeekExpenses = parseFloat(totalWeekExpenses.toFixed(2))
+
+    const totalMonthExpenses = calculateTotalExpenses(
+        transactions,
+        getDateOneMonthAgo()
+    )
+    const formattedTotalMonthExpenses = parseFloat(
+        totalMonthExpenses.toFixed(2)
+    )
+
+    const totalYearExpenses = calculateTotalExpenses(
+        transactions,
+        getDateOneYearAgo()
+    )
+    const formattedTotalYearExpenses = parseFloat(totalYearExpenses.toFixed(2))
+
+    const totalWeekIncome = calculateTotalIncomes(
+        transactions,
+        getDateOneWeekAgo()
+    )
+    const formattedTotalWeekIncomes = parseFloat(totalWeekIncome.toFixed(2))
+
+    const totalMonthIncome = calculateTotalIncomes(
+        transactions,
+        getDateOneMonthAgo()
+    )
+    const formattedTotalMonthIncomes = parseFloat(totalMonthIncome.toFixed(2))
+
+    const totalYearIncome = calculateTotalIncomes(
+        transactions,
+        getDateOneYearAgo()
+    )
+    const formattedTotalYearIncomes = parseFloat(totalYearIncome.toFixed(2))
+
     return (
         <div className={styles.mainPageContainer}>
             <div className={styles.leftMainPage}>
@@ -123,15 +146,20 @@ export default function MainPage() {
                 <div className={styles.secondLine}>
                     <TransactionGeneralizedData
                         title="Неделя"
-                        transactionsByPeriod={weeklyTransactions}
+                        periodTotalIncome={formattedTotalWeekIncomes}
+                        periodTotalExpense={formattedTotalWeekExpenses}
                     />
+
                     <TransactionGeneralizedData
                         title="Месяц"
-                        transactionsByPeriod={monthlyTransactions}
+                        periodTotalIncome={formattedTotalMonthIncomes}
+                        periodTotalExpense={formattedTotalMonthExpenses}
                     />
+
                     <TransactionGeneralizedData
                         title="Год"
-                        transactionsByPeriod={yearlyTransactions}
+                        periodTotalIncome={formattedTotalYearIncomes}
+                        periodTotalExpense={formattedTotalYearExpenses}
                     />
                 </div>
             </div>
