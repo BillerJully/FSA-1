@@ -8,7 +8,7 @@ export default function TransactionDate({ date, transactions }) {
             {transactions.map((transaction) => (
                 <div key={transaction._id} className={styles.transaction}>
                     <span>{transaction.description} - </span>
-                    <span>{transaction.amount} ₽</span>
+                    <span>{transaction.amount} ₽ </span>
                     <span>
                         {transaction.transactionType ? 'Income' : 'Expense'}
                     </span>
