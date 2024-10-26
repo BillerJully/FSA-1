@@ -12,12 +12,10 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
         sans-serif;
     letter-spacing: 1px;
-    margin-bottom: 20px;
-    margin-left: 50px;
 }
 
 .chartContainer {
-    width: 260px;
+    width: 255px;
     height: 260px;
 }
 .summaryDiagram {

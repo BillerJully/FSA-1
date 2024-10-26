@@ -3,8 +3,28 @@
     gap: 20px;
     flex-wrap: wrap;
 }
+.leftMainPage {
+    margin-top: 10px;
+}
+.middleMainPage {
+    width: 800px;
+}
+.firstLine {
+    display: flex;
+    box-sizing: border-box;
+    gap: 10px;
+    padding: 10px;
+}
 
-.rightMainPage {
+.extremumMainPage {
     gap: 20px;
     display: flex;
+    flex-direction: column;
+}
+
+.secondLine {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
 }

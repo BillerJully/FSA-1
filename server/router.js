@@ -8,5 +8,6 @@ router.get('/transactions', TransactionController.getAll)
 router.get('/transactions/:id', TransactionController.getOne)
 router.put('/transactions/:id', TransactionController.update)
 router.delete('/transactions/:id', TransactionController.delete)
+router.get('/transactions/period', TransactionController.getTransactionByPeriod)
 
 export default router

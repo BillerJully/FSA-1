@@ -8,6 +8,9 @@ import TransactionExtremum from '../components/transactionExtremum/TransactionEx
 
 export default function MainPage() {
     const [transactions, setTransactions] = useState([])
+    const [weeklyTransactions, setWeeklyTransactions] = useState([])
+    const [monthlyTransactions, setMonthlyTransactions] = useState([])
+    const [yearlyTransactions, setYearlyTransactions] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
@@ -23,12 +26,34 @@ export default function MainPage() {
             setLoading(false)
         }
     }
+    const fetchTransactionsByPeriod = async (period) => {
+        try {
+            const response = await axios.get(
+                `http://localhost:5000/api/transactions?period=${period}`
+            )
+            return response.data
+        } catch (error) {
+            setError(`Error fetching ${period} transactions: ` + error.message)
+            return []
+        }
+    }
 
     useEffect(() => {
-        fetchTransactions()
-        const intervalId = setInterval(() => {
-            fetchTransactions()
-        }, 5000)
+        const fetchData = async () => {
+            await fetchTransactions()
+
+            const weeklyData = await fetchTransactionsByPeriod('week')
+            setWeeklyTransactions(weeklyData)
+
+            const monthlyData = await fetchTransactionsByPeriod('month')
+            setMonthlyTransactions(monthlyData)
+
+            const yearlyData = await fetchTransactionsByPeriod('year')
+            setYearlyTransactions(yearlyData)
+        }
+
+        fetchData()
+        const intervalId = setInterval(fetchData, 5000)
 
         return () => clearInterval(intervalId)
     }, [])
@@ -72,23 +97,43 @@ export default function MainPage() {
             <div className={styles.leftMainPage}>
                 <TransactionInputForm />
             </div>
+            <div className={styles.middleMainPage}>
+                <div className={styles.firstLine}>
+                    {' '}
+                    <div className={styles.extremumMainPage}>
+                        <TransactionExtremum
+                            transactionTypeTitle={highesIncome.transactionType}
+                            incomeDesct={highesIncome.description}
+                            incomeAmount={highesIncome.amount}
+                        />
+                        <TransactionExtremum
+                            transactionTypeTitle={
+                                highestExpense.transactionType
+                            }
+                            incomeDesct={highestExpense.description}
+                            incomeAmount={highestExpense.amount}
+                        />
+                    </div>
+                    <TransactionSummary
+                        formattedTotalIncome={formattedTotalIncome}
+                        formattedTotalExpenses={formattedTotalExpenses}
+                    />
+                </div>
 
-            <TransactionSummary
-                formattedTotalIncome={formattedTotalIncome}
-                formattedTotalExpenses={formattedTotalExpenses}
-            />
-            <div className={styles.rightMainPage}>
-                <TransactionGeneralizedData />
-                <TransactionExtremum
-                    transactionTypeTitle={highesIncome.transactionType}
-                    incomeDesct={highesIncome.description}
-                    incomeAmount={highesIncome.amount}
-                />
-                <TransactionExtremum
-                    transactionTypeTitle={highestExpense.transactionType}
-                    incomeDesct={highestExpense.description}
-                    incomeAmount={highestExpense.amount}
-                />
+                <div className={styles.secondLine}>
+                    <TransactionGeneralizedData
+                        title="Неделя"
+                        transactionsByPeriod={weeklyTransactions}
+                    />
+                    <TransactionGeneralizedData
+                        title="Месяц"
+                        transactionsByPeriod={monthlyTransactions}
+                    />
+                    <TransactionGeneralizedData
+                        title="Год"
+                        transactionsByPeriod={yearlyTransactions}
+                    />
+                </div>
             </div>
         </div>
     )
