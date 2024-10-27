@@ -1,8 +1,8 @@
 .transactionDateContainer {
-    height: 200px;
-    /* width: 260px; */
-
+    max-height: 200px;
+    width: 260px;
     display: flex;
+
     align-items: center;
     flex-direction: column;
     border-radius: 14px;
@@ -10,5 +10,35 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
         sans-serif;
     letter-spacing: 1px;
-    justify-content: center;
+    justify-content: start;
+}
+.transactionDataContainer {
+    overflow-y: scroll;
+    width: 90%;
+}
+.transactionDataContainer::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+}
+.transaction {
+    padding: 7px;
+    width: 90%;
+    display: flex;
+
+    gap: 5px;
+    align-items: center;
+    font-size: 18px;
+}
+.typeCircleExpense {
+    width: 7px;
+    height: 7px;
+    background-color: #ff6384;
+    border-radius: 50%;
+}
+
+.typeCircleIncome {
+    width: 7px;
+    height: 7px;
+    background-color: #36a2eb;
+    border-radius: 50%;
 }

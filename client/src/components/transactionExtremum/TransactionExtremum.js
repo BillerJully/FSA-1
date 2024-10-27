@@ -9,7 +9,11 @@ export default function TransactionExtremum({
     return (
         <div className={styles.TransactionExtremumContainer}>
             <div>
-                <h3>{transactionTypeTitle ? 'прибыль' : 'расход'}</h3>
+                <h3>
+                    {transactionTypeTitle
+                        ? 'Biggest income'
+                        : 'Biggest expense'}
+                </h3>
             </div>
             <p>
                 {incomeDesct}: <strong>{incomeAmount}</strong>
