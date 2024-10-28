@@ -39,21 +39,28 @@ export default function TransactionsDatesPage() {
     }
 
     const groupedTransactions = transactions.reduce((acc, transaction) => {
-        const date = new Date(transaction.transactionDate).toLocaleDateString()
+        const date = transaction.transactionDate
         if (!acc[date]) {
             acc[date] = []
         }
         acc[date].push(transaction)
         return acc
     }, {})
+
+    const sortedGroupedTransactions = Object.keys(groupedTransactions)
+        .map((date) => ({
+            date: new Date(date),
+            transactions: groupedTransactions[date],
+        }))
+        .sort((a, b) => b.date - a.date)
     return (
         <div className={styles.TransactionsDatesPageContainer}>
             <div className={styles.TransactionsDates}>
-                {Object.keys(groupedTransactions).map((date) => (
+                {sortedGroupedTransactions.map(({ date, transactions }) => (
                     <TransactionDate
-                        key={date}
-                        date={date}
-                        transactions={groupedTransactions[date]}
+                        key={date.toISOString()}
+                        date={date.toLocaleDateString()}
+                        transactions={transactions}
                     />
                 ))}
             </div>

@@ -145,19 +145,19 @@ export default function MainPage() {
 
                 <div className={styles.secondLine}>
                     <TransactionGeneralizedData
-                        title="Неделя"
+                        title="last week"
                         periodTotalIncome={formattedTotalWeekIncomes}
                         periodTotalExpense={formattedTotalWeekExpenses}
                     />
 
                     <TransactionGeneralizedData
-                        title="Месяц"
+                        title="last month"
                         periodTotalIncome={formattedTotalMonthIncomes}
                         periodTotalExpense={formattedTotalMonthExpenses}
                     />
 
                     <TransactionGeneralizedData
-                        title="Год"
+                        title="last year"
                         periodTotalIncome={formattedTotalYearIncomes}
                         periodTotalExpense={formattedTotalYearExpenses}
                     />
