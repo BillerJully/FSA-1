@@ -5,7 +5,9 @@ class TransactionController {
         try {
             const { transactionDate, description, amount, transactionType } =
                 req.body
+            const userId = req.user.id
             const transaction = await Transaction.create({
+                userId,
                 transactionDate,
                 description,
                 amount,
@@ -19,7 +21,8 @@ class TransactionController {
     }
     async getAll(req, res) {
         try {
-            const transactions = await Transaction.find()
+            const userId = req.user.id
+            const transactions = await Transaction.find({ userId })
             return res.json(transactions)
         } catch (error) {
             console.error('Ошибка при получении всех транзацкий:', error)
@@ -34,7 +37,10 @@ class TransactionController {
             if (!id) {
                 res.status(400).json({ message: 'Id not found' })
             }
-            const transaction = await Transaction.findById(id)
+            const transaction = await Transaction.findById({
+                _id: id,
+                userId: req.user.id,
+            })
             return res.json(transaction)
         } catch (error) {
             console.error('Ошибка при получении одной транзацкии:', error)
@@ -51,7 +57,7 @@ class TransactionController {
                 res.status(400).json({ message: 'Id not found' })
             }
             const updatedTransaction = await Transaction.findByIdAndUpdate(
-                id,
+                { _id: id, userId: req.user.id },
                 transaction,
                 { new: true, runValidators: true }
             )
@@ -69,7 +75,10 @@ class TransactionController {
             if (!id) {
                 res.status(400).json({ message: 'Id not found' })
             }
-            const transaction = await Transaction.findByIdAndDelete(id)
+            const transaction = await Transaction.findByIdAndDelete({
+                _id: id,
+                userId: req.user.id,
+            })
             return res.json(transaction)
         } catch (error) {
             console.error('Ошибка при удалении транзакции:', error)
