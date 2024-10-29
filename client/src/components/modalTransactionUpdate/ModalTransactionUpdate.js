@@ -44,48 +44,53 @@ export default function ModalTransactionUpdate({
                 <form onSubmit={handleSubmit} className={styles.inputForm}>
                     <h2>Update transaction</h2>
 
-                    <div className={styles.formInput}>
-                        <label>
+                    <div className={styles.inputContainer}>
+                        <label className={styles.inputLabel}>
                             Description:
-                            <input
-                                type="text"
-                                name="description"
-                                value={updatedTransaction.description || ''}
-                                onChange={handleChange}
-                            />
                         </label>
+                        <input
+                            className={styles.inputHolder}
+                            type="text"
+                            name="description"
+                            value={updatedTransaction.description || ''}
+                            onChange={handleChange}
+                        />
                     </div>
-                    <div className={styles.formInput}>
-                        <label>
-                            Amount:
-                            <input
-                                type="number"
-                                name="amount"
-                                value={updatedTransaction.amount || ''}
-                                onChange={handleChange}
-                            />
-                        </label>
+                    <div className={styles.inputContainer}>
+                        <label className={styles.inputLabel}>Amount: </label>
+                        <input
+                            className={styles.inputHolder}
+                            type="number"
+                            name="amount"
+                            value={updatedTransaction.amount || ''}
+                            onChange={handleChange}
+                        />
                     </div>
-                    <div className={styles.formInput}>
-                        <label>
-                            Type:
-                            <select
-                                name="transactionType"
-                                value={
-                                    updatedTransaction.transactionType
-                                        ? 'true'
-                                        : 'false'
-                                }
-                                onChange={handleChange}
-                            >
-                                <option value="true">Income</option>
-                                <option value="false">Expense</option>
-                            </select>
-                        </label>
+                    <div className={styles.inputContainer}>
+                        <label className={styles.inputLabel}>Type:</label>
+                        <select
+                            className={styles.inputHolder}
+                            name="transactionType"
+                            value={
+                                updatedTransaction.transactionType
+                                    ? 'true'
+                                    : 'false'
+                            }
+                            onChange={handleChange}
+                        >
+                            <option value="true">Income</option>
+                            <option value="false">Expense</option>
+                        </select>
                     </div>
                     <div className={styles.formButtons}>
-                        <button type="submit">Update</button>
-                        <button type="button" onClick={onClose}>
+                        <button type="submit" className={styles.modalButton}>
+                            Update
+                        </button>
+                        <button
+                            type="button"
+                            className={styles.modalButton}
+                            onClick={onClose}
+                        >
                             Cancel
                         </button>
                     </div>
