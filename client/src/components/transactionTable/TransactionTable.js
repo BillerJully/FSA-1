@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import styles from './TransactionTable.module.css'
+import ModalTransactionUpdate from '../modalTransactionUpdate/ModalTransactionUpdate'
 
 export default function TransactionTable() {
     const [transactions, setTransactions] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const [currentPage, setCorrentPage] = useState(1)
+    const [currentTransaction, setCorrentTransaction] = useState(null)
+
+    const [isOpen, setIsOpen] = useState(false)
+
     const transactionsPerPage = 15
     const indexOfLastTransaction = currentPage * transactionsPerPage
     const indexOfFirstTransaction = indexOfLastTransaction - transactionsPerPage
@@ -40,14 +45,18 @@ export default function TransactionTable() {
         }
     }
 
-    const updateTransaction = async (id) => {
+    const updateTransaction = async (updatedTransaction) => {
         try {
-            await axios.put(`http://localhost:5000/api/transaction/${id}`)
+            await axios.put(
+                `http://localhost:5000/api/transactions/${updatedTransaction._id}`,
+                updatedTransaction
+            )
             fetchTransactions()
         } catch (error) {
             setError('Error updating transaction: ' + error.message)
         }
     }
+
     useEffect(() => {
         fetchTransactions()
         setCorrentPage(1)
@@ -113,12 +122,10 @@ export default function TransactionTable() {
                                         Delete
                                     </button>
                                     <button
-                                        onClick={
-                                            () =>
-                                                deleteTransaction(
-                                                    transaction._id
-                                                ) //изменить на обновить
-                                        }
+                                        onClick={() => {
+                                            setCorrentTransaction(transaction)
+                                            setIsOpen(true)
+                                        }}
                                         className={styles.updateButton}
                                     >
                                         Update
@@ -142,6 +149,13 @@ export default function TransactionTable() {
                     </button>
                 ))}
             </div>
+            <ModalTransactionUpdate
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                transaction={currentTransaction}
+                onUpdate={updateTransaction}
+                onClose={() => setIsOpen(false)}
+            />
         </div>
     )
 }

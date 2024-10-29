@@ -5,15 +5,22 @@ export default function TransactionDate({ date, transactions }) {
     return (
         <div className={styles.transactionDateContainer}>
             <h3>{date}</h3>
-            {transactions.map((transaction) => (
-                <div key={transaction._id} className={styles.transaction}>
-                    <span>{transaction.description} - </span>
-                    <span>{transaction.amount} ₽ </span>
-                    <span>
-                        {transaction.transactionType ? 'Income' : 'Expense'}
-                    </span>
-                </div>
-            ))}
+            <div className={styles.transactionDataContainer}>
+                {' '}
+                {transactions.map((transaction) => (
+                    <div key={transaction._id} className={styles.transaction}>
+                        <div
+                            className={
+                                transaction.transactionType
+                                    ? styles.typeCircleIncome
+                                    : styles.typeCircleExpense
+                            }
+                        ></div>
+                        <span>{transaction.description}</span>
+                        <span>{transaction.amount} ₽ </span>
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }
