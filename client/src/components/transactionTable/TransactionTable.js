@@ -21,10 +21,14 @@ export default function TransactionTable() {
     )
     const totalPages = Math.ceil(transactions.length / transactionsPerPage)
 
+    const AUTH_TOKEN =
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjBlMjdhNzk0MWUzZTk3ZjY5ZDIxNCIsImlhdCI6MTczMDIxMTI0NCwiZXhwIjoxNzMwMjE0ODQ0fQ.VIiqcLjkffbfT59spbmBqqRBqjrVqqZoc_Lq1A_y1Qc'
+
     const fetchTransactions = async () => {
         try {
             const response = await axios.get(
-                'http://localhost:5000/api/transactions'
+                'http://localhost:5000/api/transactions',
+                { headers: { Authorization: `Bearer ${AUTH_TOKEN}` } }
             )
             const sortedTransactions = response.data.sort(
                 (a, b) => new Date(b.createdAt) - new Date(a.createdAt)

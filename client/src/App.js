@@ -22,19 +22,6 @@ function App() {
                     <Route path="/statistics" element={<StatisticsPage />} />
                     <Route path="/dates" element={<TransactionsDatesPage />} />
                 </Routes>
-                {/* <Header />
-
-            <div className={styles.data}>
-                <TransactionInputForm />
-                <TransactionTable />
-                <TransactionSummary />
-            </div>
-            <TransactionDataChart />
-            <TransactionDate />
-            <TransactionReport />
-            <TransactionExtremum />
-            <TransactionGeneralizedData />
-            <Footer /> */}
             </div>
         </Router>
     )
