@@ -21,9 +21,7 @@ export default function TransactionTable() {
     )
     const totalPages = Math.ceil(transactions.length / transactionsPerPage)
 
-    const AUTH_TOKEN =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MjBlMjdhNzk0MWUzZTk3ZjY5ZDIxNCIsImlhdCI6MTczMDIxMTI0NCwiZXhwIjoxNzMwMjE0ODQ0fQ.VIiqcLjkffbfT59spbmBqqRBqjrVqqZoc_Lq1A_y1Qc'
-
+    const AUTH_TOKEN = localStorage.getItem('authToken')
     const fetchTransactions = async () => {
         try {
             const response = await axios.get(
@@ -42,7 +40,9 @@ export default function TransactionTable() {
     }
     const deleteTransaction = async (id) => {
         try {
-            await axios.delete(`http://localhost:5000/api/transactions/${id}`)
+            await axios.delete(`http://localhost:5000/api/transactions/${id}`, {
+                headers: { Authorization: `Bearer ${AUTH_TOKEN}` },
+            })
             fetchTransactions()
         } catch (error) {
             setError('Error deleting transaction: ' + error.message)
@@ -53,7 +53,9 @@ export default function TransactionTable() {
         try {
             await axios.put(
                 `http://localhost:5000/api/transactions/${updatedTransaction._id}`,
-                updatedTransaction
+
+                updatedTransaction,
+                { headers: { Authorization: `Bearer ${AUTH_TOKEN}` } }
             )
             fetchTransactions()
         } catch (error) {

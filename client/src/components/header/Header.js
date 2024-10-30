@@ -1,6 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import styles from './Header.module.css'
+import LogoutButton from '../logoutButton/LogoutButton'
 
 export default function Header() {
     return (
@@ -55,7 +56,7 @@ export default function Header() {
                 </div>
             </div>
             <div className={styles.rightHeader}>
-                <button className={styles.headerButton}>Sign in</button>
+                <LogoutButton />
             </div>
         </div>
     )
