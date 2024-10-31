@@ -7,11 +7,12 @@ export default function TransactionsDatesPage() {
     const [transactions, setTransactions] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
-
+    const AUTH_TOKEN = localStorage.getItem('authToken')
     const fetchTransactions = async () => {
         try {
             const response = await axios.get(
-                'http://localhost:5000/api/transactions'
+                'http://localhost:5000/api/transactions',
+                { headers: { Authorization: `Bearer ${AUTH_TOKEN}` } }
             )
             setTransactions(response.data)
         } catch (error) {
