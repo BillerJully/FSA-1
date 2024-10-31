@@ -44,6 +44,7 @@ export default function ModalTransactionUpdate({
                 <form onSubmit={handleSubmit} className={styles.inputForm}>
                     <h2>Update transaction</h2>
 
+
                     <div className={styles.inputContainer}>
                         <label className={styles.inputLabel}>
                             Description:
@@ -91,6 +92,7 @@ export default function ModalTransactionUpdate({
                             className={styles.modalButton}
                             onClick={onClose}
                         >
+
                             Cancel
                         </button>
                     </div>

@@ -23,6 +23,9 @@
     color: rgb(48, 111, 230);
     text-decoration: none;
 }
+.headerTitle:hover {
+    color: rgb(96, 148, 238);
+}
 .middleHeader {
 }
 .rightHeader {
