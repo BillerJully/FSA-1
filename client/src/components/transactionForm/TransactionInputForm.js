@@ -15,6 +15,8 @@ export default function TransactionInputForm() {
 
     const today = new Date().toISOString().split('T')[0]
 
+    const AUTH_TOKEN = localStorage.getItem('authToken')
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         setError(null)
@@ -28,13 +30,15 @@ export default function TransactionInputForm() {
             transactionType: transactionType === 'income',
         }
         try {
-            const response = await axios.post(SERVER_URL, transactionData)
+            const response = await axios.post(SERVER_URL, transactionData, {
+                headers: { Authorization: `Bearer ${AUTH_TOKEN}` },
+            })
 
             setSuccess('Transaction created successfully!')
             setTransactionDate('')
             setDescription('')
             setAmount('')
-            setTransactionType('')
+            setTransactionType()
         } catch (error) {
             setError('Error creating transaction: ' + error.message)
         }

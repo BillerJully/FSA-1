@@ -6,56 +6,19 @@ export default function Header() {
     return (
         <div className={styles.headerContainer}>
             <div className={styles.leftHeader}>
-                <h1 className={styles.headerTitle}>FinanceHelper</h1>
+                <NavLink className={styles.headerTitle} to="/">
+                    <h1 className={styles.headerTitle}>FinanceHelper</h1>{' '}
+                </NavLink>
             </div>
-            <div className={styles.middleHeader}>
-                <div className={styles.headerLinksHolder}>
-                    <nav>
-                        <NavLink
-                            to="/"
-                            className={({ isActive }) =>
-                                isActive
-                                    ? `${styles.button} ${styles.active}`
-                                    : styles.button
-                            }
-                        >
-                            Home
-                        </NavLink>
-                        <NavLink
-                            to="/transactions"
-                            className={({ isActive }) =>
-                                isActive
-                                    ? `${styles.button} ${styles.active}`
-                                    : styles.button
-                            }
-                        >
-                            Transactions
-                        </NavLink>
-                        <NavLink
-                            to="/statistics"
-                            className={({ isActive }) =>
-                                isActive
-                                    ? `${styles.button} ${styles.active}`
-                                    : styles.button
-                            }
-                        >
-                            Stat
-                        </NavLink>
-                        <NavLink
-                            to="/dates"
-                            className={({ isActive }) =>
-                                isActive
-                                    ? `${styles.button} ${styles.active}`
-                                    : styles.button
-                            }
-                        >
-                            Dates
-                        </NavLink>
-                    </nav>
-                </div>
-            </div>
+            <div className={styles.middleHeader}></div>
+
             <div className={styles.rightHeader}>
-                <button className={styles.headerButton}>Sign in</button>
+                <NavLink to="/register">
+                    <button className={styles.headerButton}>Register</button>
+                </NavLink>
+                <NavLink to="/login">
+                    <button className={styles.headerButton}>Log In</button>
+                </NavLink>
             </div>
         </div>
     )

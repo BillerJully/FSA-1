@@ -10,10 +10,7 @@ export default function StatisticsPage() {
         <div>
             <TransactionDataChart />
             <div className={styles.transactionsReport}>
-                <TransactionReport />
-                <TransactionReport />
-                <TransactionReport />
-                <TransactionReport />
+                {/* <TransactionReport /> */}
             </div>
         </div>
     )

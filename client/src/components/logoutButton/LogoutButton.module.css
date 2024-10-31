@@ -1,0 +1,16 @@
+.headerButton {
+    height: 38px;
+    width: 130px;
+    border: none;
+    border-radius: 7px;
+    color: white;
+    background-color: rgb(48, 111, 230);
+    cursor: pointer;
+    margin-top: auto;
+    margin-bottom: 10px;
+}
+
+.headerButton:hover,
+.headerButton:focus {
+    background-color: rgb(81, 132, 227);
+}

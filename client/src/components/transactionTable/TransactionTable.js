@@ -21,10 +21,12 @@ export default function TransactionTable() {
     )
     const totalPages = Math.ceil(transactions.length / transactionsPerPage)
 
+    const AUTH_TOKEN = localStorage.getItem('authToken')
     const fetchTransactions = async () => {
         try {
             const response = await axios.get(
-                'http://localhost:5000/api/transactions'
+                'http://localhost:5000/api/transactions',
+                { headers: { Authorization: `Bearer ${AUTH_TOKEN}` } }
             )
             const sortedTransactions = response.data.sort(
                 (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
@@ -38,7 +40,9 @@ export default function TransactionTable() {
     }
     const deleteTransaction = async (id) => {
         try {
-            await axios.delete(`http://localhost:5000/api/transactions/${id}`)
+            await axios.delete(`http://localhost:5000/api/transactions/${id}`, {
+                headers: { Authorization: `Bearer ${AUTH_TOKEN}` },
+            })
             fetchTransactions()
         } catch (error) {
             setError('Error deleting transaction: ' + error.message)
@@ -49,7 +53,9 @@ export default function TransactionTable() {
         try {
             await axios.put(
                 `http://localhost:5000/api/transactions/${updatedTransaction._id}`,
-                updatedTransaction
+
+                updatedTransaction,
+                { headers: { Authorization: `Bearer ${AUTH_TOKEN}` } }
             )
             fetchTransactions()
         } catch (error) {
@@ -84,6 +90,7 @@ export default function TransactionTable() {
                             <th>Added date</th>
                             <th>Transaction date</th>
                             <th>Description</th>
+                            <th>Category</th>
                             <th>Amount</th>
                             <th>Type</th>
                             <th>Category</th>
