@@ -23,13 +23,13 @@ export default function () {
         try {
             const response = await axios.post(SERVER_URL, userAuthData)
             const { token } = response.data
-            console.log(token)
+
             localStorage.setItem('authToken', token)
             setSuccess('User created!')
             setUserAuthData('')
             setusername('')
             setpassword('')
-            navigate('/')
+            navigate('/dashboard')
         } catch (error) {
             setError('Error creating user' + error.message)
         }

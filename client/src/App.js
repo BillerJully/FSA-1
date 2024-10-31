@@ -14,9 +14,11 @@ import ProtectedRoute from './components/protector/ProtectedRoute.js'
 import Register from './components/userAuth/Register.js'
 import Login from './components/userAuth/Login.js'
 import MainPage from './pages/MainPage.js'
+import Sidebar from './components/sidebar/Sidebar.js'
 import StatisticsPage from './pages/StatisticsPage.js'
 import GeneralTablePage from './pages/GeneralTablePage.js'
 import TransactionsDatesPage from './pages/TransactionsDatesPage.js'
+import Dashboard from './pages/Dashboard.js'
 
 function App() {
     return (
@@ -26,11 +28,12 @@ function App() {
                 <Routes>
                     <Route path="/register" element={<Register />} />
                     <Route path="/login" element={<Login />} />
+                    <Route path="/" element={<MainPage />} />
                     <Route
-                        path="/"
+                        path="/dashboard"
                         element={
                             <ProtectedRoute>
-                                <MainPage />
+                                <Dashboard />
                             </ProtectedRoute>
                         }
                     />
@@ -59,7 +62,7 @@ function App() {
                         }
                     />
                 </Routes>
-                <Footer />
+                {/* <Footer /> */}
             </div>
         </Router>
     )

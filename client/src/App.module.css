@@ -3,6 +3,20 @@
     flex-direction: column;
     align-items: center;
 }
+.protectedContainer {
+    width: 96vw;
+    display: flex;
+    box-sizing: border-box;
+}
+
+.protectedSlideBar {
+    clear: both;
+    float: right;
+}
+
+.protectedMainInformation {
+    margin: 5px auto;
+}
 .data {
     display: flex;
     justify-content: space-between;

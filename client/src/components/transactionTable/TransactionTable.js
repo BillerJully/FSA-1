@@ -90,6 +90,7 @@ export default function TransactionTable() {
                             <th>Added date</th>
                             <th>Transaction date</th>
                             <th>Description</th>
+                            <th>Category</th>
                             <th>Amount</th>
                             <th>Type</th>
 
@@ -112,6 +113,7 @@ export default function TransactionTable() {
                                 </td>
                                 <td>{transaction.description}</td>
                                 <td>{transaction.amount}</td>
+                                <td>coming soon</td>
                                 <td>
                                     {transaction.transactionType
                                         ? 'Income'

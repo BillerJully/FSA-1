@@ -28,5 +28,6 @@ router.delete(
 )
 
 router.post('/register', UserController.register)
+router.get('/users', UserController.getAllUsers)
 router.post('/login', UserController.login)
 export default router

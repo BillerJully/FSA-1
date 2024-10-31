@@ -30,6 +30,13 @@ class UserController {
             res.status(400).json({ message: 'ошибка авторизации' })
         }
     }
+    async getAllUsers(req, res) {
+        try {
+            const { username } = req.body
+            const users = await User.find()
+            return res.json(users)
+        } catch (error) {}
+    }
 }
 
 export default new UserController()
