@@ -9,6 +9,7 @@ export default function TransactionInputForm() {
     const [description, setDescription] = useState('')
     const [amount, setAmount] = useState('')
     const [transactionType, setTransactionType] = useState('income')
+    const [transactionCategory, setTransactionCategory] = useState(undefined)
     const [error, setError] = useState(null)
     const [success, setSuccess] = useState(null)
     const [isMessageVisible, setIsMessageVisible] = useState(false)
@@ -28,6 +29,7 @@ export default function TransactionInputForm() {
             description,
             amount: parseFloat(amount),
             transactionType: transactionType === 'income',
+            transactionCategory,
         }
         try {
             const response = await axios.post(SERVER_URL, transactionData, {
@@ -39,6 +41,7 @@ export default function TransactionInputForm() {
             setDescription('')
             setAmount('')
             setTransactionType()
+            setTransactionCategory(undefined)
         } catch (error) {
             setError('Error creating transaction: ' + error.message)
         }
@@ -89,6 +92,48 @@ export default function TransactionInputForm() {
                     >
                         <option value="income">Income</option>
                         <option value="expense">Expense</option>
+                    </select>
+                </div>
+                <div className={styles.formInput}>
+                    <label className={styles.inputLabel}>Category</label>
+                    <select
+                        className={styles.inputHolder}
+                        value={transactionCategory}
+                        onChange={(e) => setTransactionCategory(e.target.value)}
+                    >
+                        {transactionType === 'income' ? (
+                            <>
+                                <option value="">Select Category</option>
+                                <option value="other income">
+                                    Other Income
+                                </option>
+                                <option value="salary">Salary</option>
+                                <option value="scholarship">Scholarship</option>
+                                <option value="gifts">Gifts</option>
+                                <option value="other income">
+                                    Other Income
+                                </option>
+                            </>
+                        ) : (
+                            <>
+                                <option value="">Select Category</option>
+                                <option value="transport">Transport</option>
+                                <option value="groceries">Groceries</option>
+                                <option value="housing">Housing</option>
+                                <option value="phone and internet">
+                                    Phone and internet
+                                </option>
+                                <option value="entertainment">
+                                    Entertainment
+                                </option>
+                                <option value="clothing">Clothing</option>
+                                <option value="health">Health</option>
+                                <option value="education">Education</option>
+                                <option value="other expense">
+                                    Other expense
+                                </option>
+                            </>
+                        )}
                     </select>
                 </div>
                 <button className={styles.inputButton} type="submit">

@@ -93,7 +93,6 @@ export default function TransactionTable() {
                             <th>Category</th>
                             <th>Amount</th>
                             <th>Type</th>
-                            <th>Category</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -112,8 +111,12 @@ export default function TransactionTable() {
                                     ).toLocaleDateString()}
                                 </td>
                                 <td>{transaction.description}</td>
+                                <td>
+                                    {transaction.transactionCategory
+                                        ? transaction.transactionCategory
+                                        : 'unknown'}
+                                </td>
                                 <td>{transaction.amount}</td>
-                                <td>Will be soon</td>
                                 <td>
                                     {transaction.transactionType
                                         ? 'Income'

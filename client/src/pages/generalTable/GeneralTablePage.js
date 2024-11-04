@@ -1,5 +1,5 @@
 import React from 'react'
-import TransactionTable from '../components/transactionTable/TransactionTable.js'
+import TransactionTable from '../../components/transactionTable/TransactionTable.js'
 
 export default function GeneralTablePage() {
     return (
