@@ -22,7 +22,7 @@
     padding: 16px;
     border-radius: 7px;
     background-color: white;
-    height: 300px;
+    height: 360px;
     width: 400px;
     transition: 0.2s all;
     transform: scale(0.5);
@@ -31,7 +31,6 @@
 .modalContent.active {
     transform: scale(1);
 }
-
 
 form h2 {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
@@ -95,5 +94,4 @@ form h2 {
 .modalButton:hover,
 .modalButton:focus {
     background-color: rgb(81, 132, 227);
-
 }

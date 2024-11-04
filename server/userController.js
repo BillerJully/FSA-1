@@ -14,7 +14,6 @@ class UserController {
             res.status(500).json({ error: 'Не удалось создать пользователя' })
         }
     }
-
     async login(req, res) {
         try {
             const { username, password } = req.body
@@ -25,7 +24,7 @@ class UserController {
             const token = jwt.sign({ id: user._id }, JWT_SECRET, {
                 expiresIn: '1h',
             })
-            res.json({ token })
+            res.json({ token }) //cookie
         } catch (error) {
             res.status(400).json({ message: 'ошибка авторизации' })
         }

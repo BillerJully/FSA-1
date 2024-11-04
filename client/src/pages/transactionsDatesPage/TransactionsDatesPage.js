@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import styles from './styles/TransactionsDatesPage.module.css'
-import TransactionDate from '../components/transactionDate/TransactionDate.js'
+import styles from './TransactionsDatesPage.module.css'
+import TransactionDate from '../../components/transactionDate/TransactionDate.js'
 
 export default function TransactionsDatesPage() {
     const [transactions, setTransactions] = useState([])
