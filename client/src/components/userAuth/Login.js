@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, NavLink } from 'react-router-dom'
 import styles from './UserAuth.module.css'
 
 const SERVER_URL = 'http://localhost:5000/api/login'
@@ -65,6 +65,13 @@ export default function () {
                         <button type="submit" className={styles.formButton}>
                             Log in!
                         </button>
+                        <NavLink to="/register">
+                            <button
+                                className={`${styles.formButton} ${styles.navButton}`}
+                            >
+                                Don`t have account?
+                            </button>
+                        </NavLink>
                     </div>
                 </form>
             </div>

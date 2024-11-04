@@ -7,7 +7,9 @@
 
 .inputContainer {
     width: 300px;
+    box-sizing: border-box;
     display: flex;
+    justify-content: center;
 }
 
 .labelHolder {
@@ -16,22 +18,26 @@
 .inputHolder {
     margin: 5px;
     box-sizing: border-box;
-    width: 280px;
+    width: 100vw;
     height: 34px;
     border-radius: 3px;
     border: 0.5px solid grey;
 }
 
 .formButtonsContainer {
+    width: 300px;
+    box-sizing: border-box;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    padding: 5px;
+    gap: 10px;
     margin-top: 22px;
 }
 
 .formButton {
     height: 38px;
-    width: 168px;
+    width: 128px;
     background-color: #007bff;
     color: white;
     letter-spacing: 2px;
@@ -45,4 +51,8 @@
 .formButton:focus {
     background-color: #3d96f6;
     transition: 0.5s;
+}
+
+.navButton {
+    background-color: #168055;
 }

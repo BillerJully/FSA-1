@@ -11,7 +11,7 @@ export default function Header() {
                 </NavLink>
             </div>
             <div className={styles.middleHeader}></div>
-
+            {/* 
             <div className={styles.rightHeader}>
                 <NavLink to="/register">
                     <button className={styles.headerButton}>Register</button>
@@ -19,7 +19,7 @@ export default function Header() {
                 <NavLink to="/login">
                     <button className={styles.headerButton}>Log In</button>
                 </NavLink>
-            </div>
+            </div> */}
         </div>
     )
 }
