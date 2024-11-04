@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import styles from './styles/Dashboard.module.css'
-import TransactionInputForm from '../components/transactionForm/TransactionInputForm.js'
-import TransactionSummary from '../components/transactionSummary/TransactionSummary.js'
-import TransactionGeneralizedData from '../components/transactionGeneralizedData/TransactionGeneralizedData.js'
-import TransactionExtremum from '../components/transactionExtremum/TransactionExtremum.js'
+import styles from './Dashboard.module.css'
+import TransactionInputForm from '../../components/transactionForm/TransactionInputForm.js'
+import TransactionSummary from '../../components/transactionSummary/TransactionSummary.js'
+import TransactionGeneralizedData from '../../components/transactionGeneralizedData/TransactionGeneralizedData.js'
+import TransactionExtremum from '../../components/transactionExtremum/TransactionExtremum.js'
 import {
     calculateTotalExpenses,
     calculateTotalIncomes,
     getDateOneWeekAgo,
     getDateOneMonthAgo,
     getDateOneYearAgo,
-} from '../utils/calculateTransactions.js'
+} from '../../utils/calculateTransactions.js'
 
 export default function Dashboard() {
     const [transactions, setTransactions] = useState([])

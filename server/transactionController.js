@@ -3,8 +3,13 @@ import Transaction from './Transaction.js'
 class TransactionController {
     async create(req, res) {
         try {
-            const { transactionDate, description, amount, transactionType } =
-                req.body
+            const {
+                transactionDate,
+                description,
+                amount,
+                transactionType,
+                transactionCategory,
+            } = req.body
             const userId = req.user.id
             const transaction = await Transaction.create({
                 userId,
@@ -12,6 +17,7 @@ class TransactionController {
                 description,
                 amount,
                 transactionType,
+                transactionCategory,
             })
             res.status(201).json(transaction)
         } catch (error) {

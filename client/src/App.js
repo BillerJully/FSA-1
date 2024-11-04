@@ -9,16 +9,15 @@ import {
 import styles from './App.module.css'
 
 import Header from './components/header/Header.js'
-import Footer from './components/footer/Footer.js'
+
 import ProtectedRoute from './components/protector/ProtectedRoute.js'
 import Register from './components/userAuth/Register.js'
 import Login from './components/userAuth/Login.js'
-import MainPage from './pages/MainPage.js'
-import Sidebar from './components/sidebar/Sidebar.js'
-import StatisticsPage from './pages/StatisticsPage.js'
-import GeneralTablePage from './pages/GeneralTablePage.js'
-import TransactionsDatesPage from './pages/TransactionsDatesPage.js'
-import Dashboard from './pages/Dashboard.js'
+import MainPage from './pages/mainPage/MainPage.js'
+import StatisticsPage from './pages/transactionStatistics/StatisticsPage.js'
+import GeneralTablePage from './pages/generalTable/GeneralTablePage.js'
+import TransactionsDatesPage from './pages/transactionsDatesPage/TransactionsDatesPage.js'
+import Dashboard from './pages/dashboard/Dashboard.js'
 
 function App() {
     return (

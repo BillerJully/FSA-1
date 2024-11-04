@@ -1,9 +1,9 @@
 import React from 'react'
 
-import styles from './styles/StatisticsPage.module.css'
+import styles from './StatisticsPage.module.css'
 
-import TransactionDataChart from '../components/transactionDataChart/TransactionDataChart.js'
-import TransactionReport from '../components/transactionReport/TransactionReport.js'
+import TransactionDataChart from '../../components/transactionDataChart/TransactionDataChart.js'
+import TransactionReport from '../../components/transactionReport/TransactionReport.js'
 
 export default function StatisticsPage() {
     return (

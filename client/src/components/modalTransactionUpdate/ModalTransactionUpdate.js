@@ -29,7 +29,6 @@ export default function ModalTransactionUpdate({
         onClose()
     }
     if (!transaction) return null
-    if (!transaction) return null
     return (
         <div
             className={`${styles.modal} ${isOpen ? styles.active : ''}`}
@@ -43,7 +42,6 @@ export default function ModalTransactionUpdate({
             >
                 <form onSubmit={handleSubmit} className={styles.inputForm}>
                     <h2>Update transaction</h2>
-
 
                     <div className={styles.inputContainer}>
                         <label className={styles.inputLabel}>
@@ -83,6 +81,51 @@ export default function ModalTransactionUpdate({
                             <option value="false">Expense</option>
                         </select>
                     </div>
+                    <div className={styles.inputContainer}>
+                        <label className={styles.inputLabel}>Category:</label>
+                        <select
+                            className={styles.inputHolder}
+                            name="transactionCategory"
+                            value={updatedTransaction.transactionCategory}
+                            onChange={handleChange}
+                        >
+                            {updatedTransaction.transactionType === 'true' ? (
+                                <>
+                                    <option value="">Select Category</option>
+                                    <option value="other income">
+                                        Other Income
+                                    </option>
+                                    <option value="salary">Salary</option>
+                                    <option value="scholarship">
+                                        Scholarship
+                                    </option>
+                                    <option value="gifts">Gifts</option>
+                                    <option value="other income">
+                                        Other Income
+                                    </option>
+                                </>
+                            ) : (
+                                <>
+                                    <option value="">Select Category</option>
+                                    <option value="transport">Transport</option>
+                                    <option value="groceries">Groceries</option>
+                                    <option value="housing">Housing</option>
+                                    <option value="phone and internet">
+                                        Phone and internet
+                                    </option>
+                                    <option value="entertainment">
+                                        Entertainment
+                                    </option>
+                                    <option value="clothing">Clothing</option>
+                                    <option value="health">Health</option>
+                                    <option value="education">Education</option>
+                                    <option value="other expense">
+                                        Other expense
+                                    </option>
+                                </>
+                            )}
+                        </select>
+                    </div>
                     <div className={styles.formButtons}>
                         <button type="submit" className={styles.modalButton}>
                             Update
@@ -92,7 +135,6 @@ export default function ModalTransactionUpdate({
                             className={styles.modalButton}
                             onClick={onClose}
                         >
-
                             Cancel
                         </button>
                     </div>
