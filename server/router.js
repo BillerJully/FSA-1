@@ -1,33 +1,25 @@
 import { Router } from 'express'
-import TransactionController from './transactionController.js'
-import UserController from './userController.js'
-import jwt from 'jsonwebtoken'
-const JWT_SECRET = 'testtest'
+import TransactionController from './controllers/transactionController.js'
+import { body } from 'express-validator'
+import UserController from './controllers/userController.js'
+import AuthMiddleware from './middleware/authMiddleware.js'
 
 const router = new Router()
 
-const authenticateJWT = (req, res, next) => {
-    const token = req.headers.authorization?.split(' ')[1]
-    if (!token) return res.sendStatus(401)
+router.post('/transactions', AuthMiddleware, TransactionController.create)
+router.get('/transactions', AuthMiddleware, TransactionController.getAll)
+router.get('/transactions/:id', AuthMiddleware, TransactionController.getOne)
+router.put('/transactions/:id', AuthMiddleware, TransactionController.update)
+router.delete('/transactions/:id', AuthMiddleware, TransactionController.delete)
 
-    jwt.verify(token, JWT_SECRET, (err, user) => {
-        if (err) return res.sendStatus(403)
-        req.user = user
-        next()
-    })
-}
-
-router.post('/transactions', authenticateJWT, TransactionController.create)
-router.get('/transactions', authenticateJWT, TransactionController.getAll)
-router.get('/transactions/:id', authenticateJWT, TransactionController.getOne)
-router.put('/transactions/:id', authenticateJWT, TransactionController.update)
-router.delete(
-    '/transactions/:id',
-    authenticateJWT,
-    TransactionController.delete
+router.post(
+    '/register',
+    body('username').isLength({ min: 3, max: 32 }),
+    body('password').isLength({ min: 3, max: 32 }),
+    UserController.register
 )
-
-router.post('/register', UserController.register)
-router.get('/users', UserController.getAllUsers)
 router.post('/login', UserController.login)
+router.post('/logout', UserController.logout)
+router.get('/refresh', UserController.refresh)
+router.get('/users', AuthMiddleware, UserController.getAllUsers)
 export default router

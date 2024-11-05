@@ -3,6 +3,8 @@ import mongoose from 'mongoose'
 import router from './router.js'
 import cors from 'cors'
 import dotenv from 'dotenv'
+import cookieParser from 'cookie-parser'
+import ErrorMiddleware from './middleware/errorMiddleware.js'
 
 dotenv.config()
 
@@ -10,9 +12,13 @@ const SERVER_PORT = process.env.SERVER_PORT
 const DB_URI = process.env.DB_URI // Укажите имя вашей базы данных
 
 const app = express()
-app.use(cors())
+
+app.use(cookieParser())
 app.use(express.json())
+app.use(cors())
 app.use('/api', router)
+
+app.use(ErrorMiddleware)
 
 mongoose
     .connect(DB_URI)
