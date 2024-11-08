@@ -18,6 +18,7 @@ import StatisticsPage from './pages/transactionStatistics/StatisticsPage.js'
 import GeneralTablePage from './pages/generalTable/GeneralTablePage.js'
 import TransactionsDatesPage from './pages/transactionsDatesPage/TransactionsDatesPage.js'
 import Dashboard from './pages/dashboard/Dashboard.js'
+import TransactionReport from './components/transactionReport/TransactionReport.js'
 
 function App() {
     return (
@@ -57,6 +58,14 @@ function App() {
                         element={
                             <ProtectedRoute>
                                 <TransactionsDatesPage />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/reports"
+                        element={
+                            <ProtectedRoute>
+                                <TransactionReport />
                             </ProtectedRoute>
                         }
                     />

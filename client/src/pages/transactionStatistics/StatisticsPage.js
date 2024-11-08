@@ -9,9 +9,9 @@ export default function StatisticsPage() {
     return (
         <div>
             <TransactionDataChart />
-            <div className={styles.transactionsReport}>
-                {/* <TransactionReport /> */}
-            </div>
+            {/* <div className={styles.transactionsReport}>
+                <TransactionReport />
+            </div> */}
         </div>
     )
 }
