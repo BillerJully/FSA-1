@@ -4,7 +4,6 @@ import dotenv from 'dotenv'
 import UserService from '../service/userService.js'
 import { validationResult } from 'express-validator'
 import ApiError from '../exceptions/apiError.js'
-import userService from '../service/userService.js'
 
 dotenv.config()
 
@@ -33,7 +32,7 @@ class UserController {
     async logout(req, res, next) {
         try {
             const { refreshToken } = req.cookies
-            const token = await userService.logout(refreshToken)
+            const token = await UserService.logout(refreshToken)
             res.clearCookie('refreshToken')
             return res.json(token)
         } catch (error) {

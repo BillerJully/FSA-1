@@ -3,7 +3,6 @@ import bcrypt, { hash } from 'bcrypt'
 import TokenService from './tokenService.js'
 import UserDto from '../dto/UserDto.js'
 import ApiError from '../exceptions/apiError.js'
-import tokenService from './tokenService.js'
 
 class UserService {
     async register({ username, password }) {
@@ -42,7 +41,7 @@ class UserService {
         }
     }
     async logout(refreshToken) {
-        const token = await tokenService.removeToken(refreshToken)
+        const token = await TokenService.removeToken(refreshToken)
         return token
     }
 
@@ -50,8 +49,8 @@ class UserService {
         if (!refreshToken) {
             throw ApiError.UnauthorizedError()
         }
-        const userData = tokenService.validateRefreshToken(refreshToken)
-        const dbToken = await tokenService.findToken(refreshToken)
+        const userData = TokenService.validateRefreshToken(refreshToken)
+        const dbToken = await TokenService.findToken(refreshToken)
         if (!userData || !dbToken) {
             throw ApiError.UnauthorizedError()
         }
