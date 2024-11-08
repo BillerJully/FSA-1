@@ -16,6 +16,11 @@ export default function MainPage() {
                         Create acount
                     </button>
                 </NavLink>
+                <NavLink to="/login">
+                    <button className={styles.mainPageButton}>
+                        Login in account
+                    </button>
+                </NavLink>
             </div>
         </div>
     )

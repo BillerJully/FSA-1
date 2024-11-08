@@ -47,6 +47,16 @@ export default function Sidebar() {
                 >
                     Dates
                 </NavLink>
+                <NavLink
+                    to="/reports"
+                    className={({ isActive }) =>
+                        isActive
+                            ? `${styles.button} ${styles.active}`
+                            : styles.button
+                    }
+                >
+                    Get report
+                </NavLink>
             </nav>
             <LogoutButton />
         </div>

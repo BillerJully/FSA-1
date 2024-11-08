@@ -1,10 +1,9 @@
 .transactionReportContainer {
     width: 300px;
     height: 300px;
-
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     border-radius: 14px;
     box-shadow: 0 4px 14px #ccc;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',

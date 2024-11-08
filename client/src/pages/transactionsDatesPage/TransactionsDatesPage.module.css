@@ -1,12 +1,16 @@
 .TransactionsDatesPageContainer {
     display: flex;
-
-    width: 70vw;
+    height: 80vh;
+    width: 76vw;
     justify-content: start;
+    padding: 10px;
+    overflow: auto;
 }
 
 .TransactionsDates {
     display: flex;
-    gap: 21px;
+
+    justify-content: start;
+    gap: 20px;
     flex-wrap: wrap;
 }
