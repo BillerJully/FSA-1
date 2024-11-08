@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { act, useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import axios from 'axios'
 import styles from './UserAuth.module.css'
 
@@ -10,11 +11,13 @@ export default function Register() {
     const [password, setpassword] = useState('')
     const [error, setError] = useState(null)
     const [success, setSuccess] = useState(null)
+    const [isMessageVisible, setIsMessageVisible] = useState(false)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         setError(null)
         setSuccess(null)
+        setIsMessageVisible(true)
         const userAuthData = {
             username,
             password,
@@ -23,8 +26,8 @@ export default function Register() {
         try {
             const response = await axios.post(SERVER_URL, userAuthData)
 
-            const token = response.data
-            console.log(token)
+            const { accessToken } = response.data
+            console.log(accessToken)
             setSuccess('User created!')
             setUserAuthData('')
             setusername('')
@@ -63,7 +66,40 @@ export default function Register() {
                     <button type="submit" className={styles.formButton}>
                         Create account now!
                     </button>
+                    <NavLink to="/login">
+                        <button
+                            className={`${styles.formButton} ${styles.navButton}`}
+                        >
+                            Have account?
+                        </button>
+                    </NavLink>
                 </div>
+                {isMessageVisible && success && (
+                    <div>
+                        {success}
+                        <NavLink to="/login">
+                            <button
+                                className={styles.creationButton}
+                                onClick={() => setIsMessageVisible(false)}
+                                style={{ marginLeft: '10px' }}
+                            >
+                                Go login!
+                            </button>
+                        </NavLink>
+                    </div>
+                )}
+                {isMessageVisible && error && (
+                    <div>
+                        {error}
+                        <button
+                            className={styles.creationButton}
+                            onClick={() => setIsMessageVisible(false)}
+                            style={{ marginLeft: '10px' }}
+                        >
+                            close
+                        </button>
+                    </div>
+                )}
             </form>
         </div>
     )
