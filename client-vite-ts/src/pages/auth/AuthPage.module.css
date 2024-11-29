@@ -1,0 +1,20 @@
+.authSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 800px;
+    border: 1px red solid;
+    flex-direction: column;
+}
+
+.authForms {
+    display: flex;
+    border: 1px blue solid;
+}
+
+@media (max-width: 800px) {
+    .authForms {
+        display: none;
+    }
+}

@@ -1,0 +1,31 @@
+.headerSection {
+    box-sizing: border-box;
+    height: 10vh;
+    width: 100vw;
+    padding: 7px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px #ccc;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
+        sans-serif;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+}
+
+.headerTitle {
+    color: rgb(48, 111, 230);
+    font-size: 30px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.headerTitle:hover {
+    color: rgb(96, 148, 238);
+}
+
+.rightHeader {
+    box-sizing: border-box;
+    border: 1px solid red;
+    height: 100%;
+}

@@ -1,0 +1,21 @@
+.asideContainer {
+    display: flex;
+    box-sizing: content-box;
+    justify-content: space-between;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 7px;
+}
+
+.asideNavigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-decoration: none;
+}
+.asideNavigation a {
+    text-decoration: none;
+    color: black;
+}

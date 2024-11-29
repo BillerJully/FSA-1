@@ -1,0 +1,8 @@
+.tableContainer {
+    width: 700px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px saddlebrown solid;
+}

@@ -7,7 +7,7 @@ const JWT_SECRET = process.env.JWT_ACCESS_SECRET
 
 class TokenService {
     generateToken(payload) {
-        const accessToken = jwt.sign(payload, JWT_SECRET, { expiresIn: '10m' })
+        const accessToken = jwt.sign(payload, JWT_SECRET, { expiresIn: '10h' })
         const refreshToken = jwt.sign(payload, process.env.JWT_REFRESH_SECRET, {
             expiresIn: '1d',
         })
